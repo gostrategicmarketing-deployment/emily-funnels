@@ -33,9 +33,9 @@
 
 ### 1. LEAD (0:00 to 1:30)
 
-`[ON SCREEN: black band top, white line 1 "Saved half a million or more?" / red line 2 "Standard Medicare advice wasn't built for you."]`
+`[ON SCREEN: black band top, white line 1 "Saved $100,000 or more?" / red line 2 "Standard Medicare advice wasn't built for you."]`
 
-If you've saved half a million dollars or more for retirement, I want you to hear this before you pick a single Medicare plan, because most of the Medicare advice out there was built for someone who doesn't have savings to protect, and if you follow it, it can quietly cost you your doctors and your savings at the exact moment you need them most.
+If you've saved $100,000 or more for retirement, I want you to hear this before you pick a single Medicare plan, because most of the Medicare advice out there was built for someone who doesn't have savings to protect, and if you follow it, it can quietly cost you your doctors and your savings at the exact moment you need them most.
 
 And here's the part almost nobody tells you. For a lot of people, this is a decision you only get to make once.
 
@@ -73,7 +73,7 @@ So about 10 years ago I joined Larry at The Medicare Coach. And over the years I
 
 ### 3. THE PROBLEM MECHANISM: THE GOLDEN TICKET WINDOW (3:45 to 6:15)
 
-`[ON SCREEN: animated timeline. A green "6-MONTH WINDOW" bar starts at "You join Medicare". After it ends, the bar turns grey and a padlock icon appears.]`
+`[ON SCREEN: animated timeline. A green "6-MONTH WINDOW" bar starts at "Your Part B starts". After it ends, the bar turns grey and a padlock icon appears.]`
 
 So here's the rule. Original Medicare usually covers about 80% of approved costs. The other 20% is on you, unless you have a Medicare supplement plan, which some people call Medigap, and 20% of uncovered costs can get very expensive, very quickly.
 
@@ -154,7 +154,7 @@ When you join, we also include:
 - **Physician network research,** where we confirm which plans your doctors actually accept.
 - **12 months of our Medicare help desk,** starting when your Medicare begins, for the bills and coverage questions that always come up in that first year.
 
-The Concierge is a one-time investment of $1,497, or two payments of $749. If you're married, your spouse can join for $700, since couples usually end up on different plans anyway.
+The Concierge is a one-time investment of $1,497, or two payments of $749. If you're married, your spouse can join for $700, since couples oftentimes end up on different plans anyway.
 
 `[ON SCREEN: "$1,497 one time · or 2 x $749 · spouse +$700"]`
 
@@ -179,7 +179,8 @@ I'm Emily with The Medicare Coach, and we'd love to help you.
 - **Captions:** burn in word-highlight captions (`video-captions`). Emily's masters already carry captions, so record clean for this one.
 - **Hook bands:** the first 8 seconds use the Emily hook-band format (black band, white line 1, red #ED1C24 line 2).
 - **Cut-downs:** cut a 60-second version (Lead + Golden Ticket Window + CTA) to use as the feeding ad. It keeps the message matched to the page headline.
-- **Interim video:** until this VSL is recorded, the VSL page plays Emily's clean 76-second "Over 500k Savings" cut (`assets/video/emily-500k-76s-interim.mp4`, from `2026-10-16 - 500k Video Enhanced Cuts/emi_500k-savings-76s_enhanced-v1.mp4`).
+- **Threshold:** the qualifier is $100,000+ (Phil, 2026-10-17: $100K+ savers are just as good as $500K+). It is Emily's own threshold from "Join In 12 Months."
+- **Interim video:** until this VSL is recorded, the VSL page plays Emily's clean 76-second "Over 500k Savings" cut (`assets/video/emily-500k-76s-interim.mp4`; it says "over $500,000", a subset of the $100K+ hook, so it still fits; from `2026-10-16 - 500k Video Enhanced Cuts/emi_500k-savings-76s_enhanced-v1.mp4`).
 - **No on-screen document:** don't show any client email or record on camera. The Nora email is on hold until Emily signs off (see `Emily/CLAUDE.md`). This script leaves Nora out on purpose.
 
 ## Items for Emily to confirm before this airs

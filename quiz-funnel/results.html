@@ -125,7 +125,7 @@
   var timing = { t3: 90, t6: 65, t12: 38, t12p: 20, on: 50 }[A.timing] || 50;
   var hosp = parseInt(A.hospital || "3", 10);
   var doctor = Math.min(95, 10 + hosp * 14 + (A.doctors === "unsure" ? 15 : A.doctors === "nodoc" ? 10 : 0));
-  var savings = { u100: 25, s100: 55, s500: 82, s1m: 90, na: 55 }[A.savings] || 55;
+  var savings = { u100: 30, s100: 72, s500: 84, s1m: 90, na: 55 }[A.savings] || 55;
   if (A.meds === "m8") savings = Math.min(95, savings + 6);
   var pressure = Math.min(95, parseInt(A.pressure || "3", 10) * 18);
   var score = Math.max(12, Math.min(92, Math.round(100 - (timing + doctor + savings + pressure) / 4)));
@@ -134,7 +134,7 @@
   var P;
   if (A.timing === "on") P = { k: "second", t: "The Second Look", s: "Already on Medicare", sum: "Since Medicare is already in place, the biggest lever now is the review every fall. Plans change every year, and if no one is watching, the same medications at the same pharmacy can quietly cost more." };
   else if (A.employer === "mine" || A.employer === "spouse") P = { k: "cross", t: "The Crossroads", s: "Employer plan or Medicare?", sum: "Delaying Medicare without penalties may be possible, but just because you can delay doesn't always mean you should. The employer plan has to meet Medicare's rules, and the costs need a side-by-side comparison." };
-  else if (A.savings === "s500" || A.savings === "s1m") P = { k: "protect", t: "The Protector", s: "Savings worth guarding", sum: "There are real savings to protect here, which means the standard Medicare advice, built for people with no assets, may be the wrong advice. Medicare usually covers about 80%, and the decision that protects the rest is the one that's hardest to undo." };
+  else if (A.savings === "s100" || A.savings === "s500" || A.savings === "s1m") P = { k: "protect", t: "The Protector", s: "Savings worth guarding", sum: "There are real savings to protect here, which means the standard Medicare advice, built for people with no assets, may be the wrong advice. Medicare usually covers about 80%, and the decision that protects the rest is the one that's hardest to undo." };
   else if (A.timing === "t3") P = { k: "fast", t: "The Fast Track", s: "Decision coming up soon", sum: "Medicare starts soon, so the order of operations matters: application timing, doctor checks, then plans. Waiting until the last minute is when we see the most mistakes." };
   else P = { k: "early", t: "The Early Planner", s: "Here at the ideal time", sum: "There's time to ask the right questions, spot red flags early and fix them, which is exactly when getting it right is easiest." };
 
@@ -166,8 +166,7 @@
   if (A.employer === "mine" || A.employer === "spouse") W.push(["Employer coverage past 65", "To delay without penalties, the plan generally must not require Medicare, the employer needs 20 or more employees, and the drug coverage must be creditable. Then compare the costs side by side."]);
   else if (A.employer === "retiree") W.push(["A retiree, COBRA or Marketplace plan", "COBRA, Marketplace and other private plans usually don't count as coverage that lets you delay Medicare, and retiree plans often require Part A and B. Most people in this spot still join at 65."]);
 
-  if (A.savings === "s500" || A.savings === "s1m") W.push(["Savings of " + (A.savings === "s1m" ? "over $1 million" : "$500,000 to $1 million"), "Original Medicare usually covers about 80% of approved costs. The other 20% is on " + subl + " unless a supplement plan covers it, so the more that's been saved, the more is exposed."]);
-  else if (A.savings === "s100") W.push(["Savings of $100,000 to $500,000", "The 20% Medicare doesn't cover can get very expensive during treatment. Getting the supplement decision right while the window is open protects that cushion."]);
+  if (A.savings === "s100" || A.savings === "s500" || A.savings === "s1m") W.push(["Savings of " + ({ s100: "$100,000 to $500,000", s500: "$500,000 to $1 million", s1m: "over $1 million" })[A.savings], "Original Medicare usually covers about 80% of approved costs. The other 20% is on " + subl + " unless a supplement plan covers it, so the more that's been saved, the more is exposed."]);
 
   if (hosp >= 4) W.push(["A top specialist or research hospital matters", "Many top research hospitals accept Original Medicare but very few to no Advantage plans. That one fact can decide the program."]);
   if (A.doctors === "unsure") W.push(["The doctors haven't been asked yet", "Ask each one: what type of Medicare do you accept, and are there any rules I should know about, like a limit on Medicare patients?"]);
