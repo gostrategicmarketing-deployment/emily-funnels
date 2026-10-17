@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome to The Medicare Coach</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="../assets/tmc.css">
+<style>
+  .prep { counter-reset: p; list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+  .prep li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 14px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 16px 18px; }
+  .prep li::before { counter-increment: p; content: counter(p); width: 40px; height: 40px; border-radius: 50%; background: var(--sky); color: var(--navy); font-weight: 700; display: grid; place-items: center; font-family: var(--display); }
+  .prep b { color: var(--navy); display: block; }
+  .prep span { color: var(--muted); font-size: var(--fs-sm); }
+  .welcome-hero { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 28px; align-items: end; }
+  .welcome-hero img { width: 260px; margin-bottom: calc(-1 * clamp(26px, 4vw, 44px)); }
+  @media (max-width: 720px) { .welcome-hero { grid-template-columns: minmax(0, 1fr); } .welcome-hero img { display: none; } }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><img class="logo" src="../assets/img/logo.png" alt="The Medicare Coach" width="210" height="24"><div class="phone">Your team<b class="tnum">785-537-6225</b></div></div></header>
+
+<section class="hookband">
+  <div class="wrap welcome-hero">
+    <div class="stack">
+      <span class="eyebrow light">You're in</span>
+      <h1>Welcome to The Medicare Coach.<span class="l2">We're so glad you're here.</span></h1>
+      <p>Watch for a call from <b style="color:#fff">785-537-6225</b>. Our team will ask a few questions, match you with the right coach, and get your first call on the calendar.</p>
+    </div>
+    <img src="../assets/img/emily-cutout.webp" alt="Emily" width="260" height="268">
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap narrow stack">
+    <span class="eyebrow">Get a head start</span>
+    <h2>Three things to gather before your first call</h2>
+    <ol class="prep">
+      <li><span><b>Your doctor list</b><span>Every doctor you see now or might see in the next year or two. Call each one and ask: what type of Medicare do you accept, and are there any rules I should know about, like a limit on Medicare patients?</span></span></li>
+      <li><span><b>Your medications and pharmacy</b><span>Names, doses and how often you take them, plus the pharmacy you use.</span></span></li>
+      <li><span><b>Any employer or retiree plan details</b><span>If you or your spouse have coverage past 65, have the plan summary handy so your coach can compare it side by side with Medicare.</span></span></li>
+    </ol>
+    <p class="muted">Joining as a couple? Keep your lists separate. Each of you gets your own research.</p>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap"><img src="../assets/img/logo-white.png" alt="The Medicare Coach" width="180" height="20"><p>© 2026 The Medicare Coach, LLC ®. Not connected with or endorsed by the United States government or the federal Medicare program.</p></div></footer>
+<script src="../assets/tmc.js"></script>
+</body>
+</html>

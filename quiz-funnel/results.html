@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Medicare Readiness Report | The Medicare Coach</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="../assets/tmc.css">
+<style>
+  .res-top { background: var(--mist); }
+  .res-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(22px, 3.5vw, 40px); align-items: start; }
+  .res-grid .side { position: sticky; top: calc(84px + env(safe-area-inset-top, 0px)); display: flex; flex-direction: column; gap: 18px; }
+  @media (max-width: 900px) { .res-grid { grid-template-columns: minmax(0, 1fr); } .res-grid .side { position: static; } }
+  .emily-note { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 14px; align-items: start; background: var(--sky); border-radius: var(--r-lg); padding: 18px; }
+  .emily-note img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 15%; background: var(--paper); }
+  .emily-note b { color: var(--navy); }
+  .sample-flag { background: #FFF4D6; color: #6B4A00; border-radius: var(--r-sm); padding: 12px 16px; font-size: var(--fs-sm); }
+  .reveal-1 { animation: up .6s .05s both cubic-bezier(.2,.7,.2,1); }
+  .reveal-2 { animation: up .6s .2s both cubic-bezier(.2,.7,.2,1); }
+  @keyframes up { from { transform: translateY(16px) scale(.98); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .reveal-1, .reveal-2 { animation: none; } }
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap"><img class="logo" src="../assets/img/logo.png" alt="The Medicare Coach" width="210" height="24"><div class="phone">Questions? Call us<b class="tnum">785-537-6225</b></div></div></header>
+
+<section class="sec res-top" style="padding-top:clamp(28px,5vw,56px)">
+  <div class="wrap res-grid">
+    <div class="stack" style="gap:22px">
+      <p class="sample-flag" id="sampleFlag" hidden>This is a sample report. Take the 2-minute check to see your own.</p>
+      <article class="report reveal-1" id="report">
+        <div class="report-head">
+          <div>
+            <div class="kicker" id="kicker">Medicare Readiness Report</div>
+            <h2 id="title">The Protector<span class="l2">Savings worth guarding</span></h2>
+            <p class="meta" id="meta"></p>
+          </div>
+          <div class="badge" aria-label="Readiness score"><span><b class="tnum" id="score">0</b>ready</span></div>
+        </div>
+        <div class="report-body">
+          <p id="summary" style="font-size:var(--fs-lg)"></p><noscript><p>Your report needs JavaScript turned on. Call 785-537-6225 and we'll walk you through it.</p></noscript>
+          <div class="stack" style="gap:14px" id="meters"></div>
+          <div class="stack" style="gap:12px">
+            <h3>Why your report reads this way</h3>
+            <ul class="why" id="why"></ul>
+          </div>
+          <p class="disclaim">Educational only. This report does not recommend a specific plan; the right choice depends on your exact doctors, medications, state and coverage.</p>
+        </div>
+      </article>
+    </div>
+
+    <aside class="side reveal-2">
+      <div class="emily-note">
+        <img src="../assets/img/emily-cutout.webp" alt="Emily" width="72" height="72">
+        <div class="stack" style="gap:6px"><b>A note from Emily</b><span id="note">The plan I would have picked for my dad was absolutely not the right decision. Most people only find out once they're sick. Let's make sure you find out now.</span></div>
+      </div>
+      <div class="price-card" id="offer">
+        <div class="ph"><b id="offerTitle">Your next step</b><span>One-time</span></div>
+        <div class="pb">
+          <p id="offerLead" style="font-weight:600;color:var(--navy)">Let your own Medicare coach do the research and walk you through your best options.</p>
+          <ul class="checks" style="font-size:var(--fs-sm)">
+            <li><span>Personalized Medicare Interview</span></li>
+            <li><span>All your research done for you, doctors first</span></li>
+            <li><span>One-on-one consultation: 2 to 5 options side by side</span></li>
+            <li><span>Enrollment and Medicare paperwork, made official</span></li>
+            <li><span><b>Included:</b> first annual review, Medicare timeline, physician research, 12-month help desk</span></li>
+          </ul>
+          <div class="price-row"><span class="big" style="font-size:2.75rem">$1,497</span><span class="once">or 2 x $749</span></div>
+          <a class="btn btn-red" id="cta" data-href="checkoutFull" href="https://join.themedicarecoach.com/mec-bonus">Start My Medicare Enrollment Concierge <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn-sub" href="../vsl-funnel/index.html" style="text-align:center">Not ready? Watch Emily's short video first</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center rv"><span class="eyebrow">From people who were where you are</span><h2 id="proofHead">"I'm glad I hired the experts"</h2></div>
+    <div class="reviews">
+      <figure class="review rv"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"There are some tricky decisions to make that I wouldn't have been able to change after my initial enrollment period… They are unbiased, unlike the insurance companies who cold call selling their plans. I usually research things like this myself, but this one was too important, and I'm glad I hired the experts."</blockquote><figcaption><span class="av">C</span><span><b>Carol</b>Client review</span></figcaption></figure>
+      <figure class="review rv"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"After looking into signing up for Medicare, my wife and I were overwhelmed with all the options and choices we had to pick from… Medicare Coach clearly explained our options and costs for each option which allowed us to pick the plan best for us."</blockquote><figcaption><span class="av">E</span><span><b>Eddyo</b>Client review</span></figcaption></figure>
+      <figure class="review rv"><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>"Medicare Coach has taken very good care of me. I joined in 2020 just before I turned 65. I have certenly gotten my money's worth. Initially they seemed pricey… They set my mind at ease."</blockquote><figcaption><span class="av">D</span><span><b>David R</b>Client review</span></figcaption></figure>
+    </div>
+    <p class="src-note center">Verbatim from client reviews published on The Medicare Coach's enrollment page. "…" marks a shortened review.</p>
+  </div>
+</section>
+
+<section class="sec sec-sky">
+  <div class="wrap narrow">
+    <div class="sec-head center"><span class="eyebrow">Questions</span><h2>About your next step</h2></div>
+    <div class="faq">
+      <details><summary>Are you going to sell me a plan?</summary><div class="a"><p>No. We're not an insurance agent, a broker, or the government, and we don't get paid by insurance companies. Clients hire us directly, the way they'd hire an accountant.</p></div></details>
+      <details><summary>What if my spouse needs help too?</summary><div class="a"><p>Your spouse can join for $700. Choose the couple option at checkout. Each of you gets your own research, since couples oftentimes end up on different plans.</p></div></details>
+      <details><summary>Is it one-time or yearly?</summary><div class="a"><p>One time. Your first money-saving annual review is included; after that, reviews are optional.</p></div></details>
+      <details><summary>What if I'm not ready yet?</summary><div class="a"><p>The ideal time to start is 6 to 12 months before your Medicare begins. If you're further out than that, watch Emily's video and come back when you're inside 12 months.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<footer class="foot"><div class="wrap"><img src="../assets/img/logo-white.png" alt="The Medicare Coach" width="180" height="20" loading="lazy"><p>© 2026 The Medicare Coach, LLC ®. All rights reserved.</p><p>Medicare has neither endorsed nor reviewed the information provided by The Medicare Coach or this website. The Medicare Coach, LLC ® is not connected with or endorsed by the United States government or the federal Medicare program. The Medicare Coach is not an insurance agency and does not sell insurance.</p></div></footer>
+
+<script src="../assets/tmc.js"></script>
+<script>
+(function () {
+  var data = null, stored = true;
+  try { data = JSON.parse(sessionStorage.getItem("tmc_quiz") || "null"); } catch (e) { stored = false; }
+  var A = data && data.answers && data.answers.timing ? data.answers : null;
+  if (!A) {
+    var flag = document.getElementById("sampleFlag");
+    flag.hidden = false;
+    if (!stored) flag.textContent = "Your browser blocked us from carrying your answers to this page, so this is a sample report. Call 785-537-6225 and we'll walk you through yours.";
+    A = { timing: "t6", employer: "none", savings: "s500", hospital: "5", doctors: "unsure", meds: "m1", pressure: "3", worry: "bills", who: "me", first_name: "" };
+  }
+  var name = (A.first_name || "").replace(/[<>&"]/g, "");
+  var parent = A.who === "parent", couple = A.who === "couple";
+  var your = parent ? "your parent's" : "your", Your = parent ? "Your parent's" : "Your";
+  var sub = parent ? "Your parent" : "You", subl = parent ? "your parent" : "you";
+  var isAre = parent ? "is" : "are", has = parent ? "has" : "have";
+
+  // ---- Scores (0-100 exposure; higher = more to look at) ----
+  var timing = { t3: 90, t6: 65, t12: 38, t12p: 20, on: 50 }[A.timing] || 50;
+  var hosp = parseInt(A.hospital || "3", 10);
+  var doctor = Math.min(95, 10 + hosp * 14 + (A.doctors === "unsure" ? 15 : A.doctors === "nodoc" ? 10 : 0));
+  var savings = { u100: 25, s100: 55, s500: 82, s1m: 90, na: 55 }[A.savings] || 55;
+  if (A.meds === "m8") savings = Math.min(95, savings + 6);
+  var pressure = Math.min(95, parseInt(A.pressure || "3", 10) * 18);
+  var score = Math.max(12, Math.min(92, Math.round(100 - (timing + doctor + savings + pressure) / 4)));
+
+  // ---- Profile ----
+  var P;
+  if (A.timing === "on") P = { k: "second", t: "The Second Look", s: "Already on Medicare", sum: "Since Medicare is already in place, the biggest lever now is the review every fall. Plans change every year, and if no one is watching, the same medications at the same pharmacy can quietly cost more." };
+  else if (A.employer === "mine" || A.employer === "spouse") P = { k: "cross", t: "The Crossroads", s: "Employer plan or Medicare?", sum: "Delaying Medicare without penalties may be possible, but just because you can delay doesn't always mean you should. The employer plan has to meet Medicare's rules, and the costs need a side-by-side comparison." };
+  else if (A.savings === "s500" || A.savings === "s1m") P = { k: "protect", t: "The Protector", s: "Savings worth guarding", sum: "There are real savings to protect here, which means the standard Medicare advice, built for people with no assets, may be the wrong advice. Medicare usually covers about 80%, and the decision that protects the rest is the one that's hardest to undo." };
+  else if (A.timing === "t3") P = { k: "fast", t: "The Fast Track", s: "Decision coming up soon", sum: "Medicare starts soon, so the order of operations matters: application timing, doctor checks, then plans. Waiting until the last minute is when we see the most mistakes." };
+  else P = { k: "early", t: "The Early Planner", s: "Here at the ideal time", sum: "There's time to ask the right questions, spot red flags early and fix them, which is exactly when getting it right is easiest." };
+
+  document.getElementById("title").innerHTML = P.t + '<span class="l2">' + P.s + "</span>";
+  document.getElementById("kicker").textContent = name ? name + "'s Medicare Readiness Report" : "Medicare Readiness Report";
+  document.getElementById("meta").textContent = (parent ? "Prepared for your parent's decision · " : couple ? "Prepared for you and your spouse · " : "") + new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  document.getElementById("summary").textContent = (name ? name + ", here's the headline. " : "") + P.sum;
+
+  var sc = document.getElementById("score"), t0 = Date.now();
+  sc.textContent = score;
+  if (!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches)) {
+    (function tick() { var p = Math.min(1, (Date.now() - t0) / 1100); sc.textContent = Math.round(score * (1 - Math.pow(1 - p, 3))); if (p < 1) setTimeout(tick, 30); })();
+  }
+
+  // ---- Meters ----
+  function lvl(v) { return v >= 67 ? ["high", "High"] : v >= 40 ? ["mid", "Watch"] : ["low", "Low"]; }
+  document.getElementById("meters").innerHTML = [["Timing", timing], ["Doctor access", doctor], ["Savings exposure", savings], ["Sales pressure", pressure]].map(function (m) {
+    var L = lvl(m[1]);
+    return '<div class="meter"><span class="lab">' + m[0] + '</span><span class="trk"><i class="lvl-' + L[0] + '" style="width:' + m[1] + '%"></i></span><span class="val txt-' + L[0] + '">' + L[1] + "</span></div>";
+  }).join("");
+
+  // ---- Why (each line cites an answer) ----
+  var W = [];
+  var tLab = { t3: "in the next 3 months", t6: "in 4 to 6 months", t12: "in 7 to 12 months", t12p: "more than a year away" }[A.timing];
+  if (A.timing === "on") W.push([sub + " " + (parent ? "is" : "are") + " already on Medicare", "Part D and Advantage plans change every year. The window to review and switch runs October 15 to December 7."]);
+  else if (A.timing === "t3" || A.timing === "t6") W.push([Your + " Medicare starts " + tLab, "Emily recommends applying for Part A and B about three months before you want it to start. Last-minute applications are where Medicare's own mistakes tend to show up."]);
+  else W.push([Your + " Medicare starts " + tLab, "Starting 6 to 12 months early is the sweet spot. It leaves time to catch a doctor who doesn't take Medicare, or a surgery that should happen first."]);
+
+  if (A.employer === "mine" || A.employer === "spouse") W.push(["Employer coverage past 65", "To delay without penalties, the plan generally must not require Medicare, the employer needs 20 or more employees, and the drug coverage must be creditable. Then compare the costs side by side."]);
+  else if (A.employer === "retiree") W.push(["A retiree, COBRA or Marketplace plan", "COBRA, Marketplace and other private plans usually don't count as coverage that lets you delay Medicare, and retiree plans often require Part A and B. Most people in this spot still join at 65."]);
+
+  if (A.savings === "s500" || A.savings === "s1m") W.push(["Savings of " + (A.savings === "s1m" ? "over $1 million" : "$500,000 to $1 million"), "Original Medicare usually covers about 80% of approved costs. The other 20% is on " + subl + " unless a supplement plan covers it, so the more that's been saved, the more is exposed."]);
+  else if (A.savings === "s100") W.push(["Savings of $100,000 to $500,000", "The 20% Medicare doesn't cover can get very expensive during treatment. Getting the supplement decision right while the window is open protects that cushion."]);
+
+  if (hosp >= 4) W.push(["A top specialist or research hospital matters", "Many top research hospitals accept Original Medicare but very few to no Advantage plans. That one fact can decide the program."]);
+  if (A.doctors === "unsure") W.push(["The doctors haven't been asked yet", "Ask each one: what type of Medicare do you accept, and are there any rules I should know about, like a limit on Medicare patients?"]);
+  if (A.doctors === "nodoc") W.push(["No regular doctors right now", "People who are healthiest when they join Medicare tend to regret their decision the most. Think about who you'd want to see if something happened next year."]);
+  if (A.meds === "m4" || A.meds === "m8") W.push([(A.meds === "m8" ? "8 or more" : "4 to 7") + " regular prescriptions", "Part D plans that look alike can cost very differently for the same medications, and they change every year."]);
+  if (parseInt(A.pressure || "0", 10) >= 4) W.push(["Lots of calls and mailers", "Agents are paid based on the plans they enroll you in, and not all plans pay the same. Many are helpful, but the advice isn't always centered on long-term needs."]);
+  var worryTxt = { stuck: "being stuck with the wrong plan", bills: "medical bills eating into savings", docs: "losing access to the doctors you want", time: "wasting hours on research" }[A.worry];
+  if (worryTxt) W.push(["Biggest worry: " + worryTxt, A.worry === "time" ? "If you don't have the time or desire to spend 10 to 50 hours on research for a decision that's hard to undo, that's exactly what a coach takes off your plate." : "That's what the six-month supplement window and a doctor-first decision protect against."]);
+
+  document.getElementById("why").innerHTML = W.slice(0, 5).map(function (w) {
+    return '<li><span class="you">You said</span><b>' + w[0] + "</b><span>" + w[1] + "</span></li>";
+  }).join("");
+
+  // ---- Next step: routed by qualifier ----
+  var offer = document.getElementById("offer"), cta = document.getElementById("cta"), lead = document.getElementById("offerLead");
+  var later = A.timing === "t12p";
+  if (P.k === "second") {
+    document.getElementById("offerTitle").textContent = "Your next step";
+    lead.textContent = "Talk with our team about a money-saving review of " + your + " current plan before open enrollment closes on December 7.";
+    offer.querySelector(".checks").innerHTML = "<li><span>Independent advice: no commissions, no plans sold</span></li><li><span>Part D or Advantage plan reviewed against " + your + " medications and pharmacy</span></li>";
+    offer.querySelector(".price-row").remove();
+    cta.removeAttribute("data-href"); cta.href = "tel:+17855376225";
+    cta.innerHTML = 'Call 785-537-6225 <span class="arrow" aria-hidden="true">→</span>';
+    offer.querySelector(".btn-sub").outerHTML = '<p class="btn-sub" style="text-align:center">Our team answers Medicare questions by phone and email.</p>';
+  } else if (later) {
+    document.getElementById("offerTitle").textContent = "Your next step";
+    lead.textContent = "You're more than a year out, which is early. Watch Emily's short video now, and come back to the Concierge when you're inside 12 months, the ideal time to start.";
+    offer.querySelector(".checks").innerHTML = "<li><span>Why the first six months after Part B starts matter so much</span></li><li><span>Why the doctors you'd want should drive the decision</span></li>";
+    offer.querySelector(".price-row").remove();
+    cta.removeAttribute("data-href"); cta.href = "../vsl-funnel/index.html";
+    cta.innerHTML = 'Watch Emily\'s Video <span class="arrow" aria-hidden="true">→</span>';
+    offer.querySelector(".btn-sub").remove();
+  } else {
+    lead.textContent = {
+      protect: "Protect " + your + " doctors and " + your + " savings with a coach who isn't paid by any insurance company.",
+      cross: "Your coach compares the employer plan side by side with Medicare, and the Concierge still covers you whenever Medicare does start.",
+      fast: "Your coach moves quickly on " + your + " timeline, doctors and plans so nothing is missed.",
+      early: "Start now, inside the ideal 6 to 12 month window, with a coach who builds " + your + " Medicare timeline and catches red flags while there's time to fix them."
+    }[P.k];
+  }
+})();
+</script>
+</body>
+</html>

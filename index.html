@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Emily VSL + Quiz Funnels</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,500&display=swap">
+<style>
+/* Layout: a briefing sheet. Funnel tiles up top (phone-shaped previews of each step), the full VSL script below as a readable teleprompter column. */
+:root { --bg:#F5F8FC; --surface:#FFFFFF; --fg:#14213F; --muted:#56688C; --navy:#24408E; --red:#ED1C24; --line:#D5E1EF; --cue-bg:#EBF7FF; --band:#0B0F1A; --display:"Cabin","Helvetica Neue",Arial,sans-serif; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0C1322; --surface:#141E33; --fg:#E3EAF7; --muted:#9AAACB; --navy:#8FB0FF; --red:#FF5A60; --line:#25324D; --cue-bg:#1A2A4A; --band:#05080F; color-scheme:dark; } }
+:root[data-theme="dark"] { --bg:#0C1322; --surface:#141E33; --fg:#E3EAF7; --muted:#9AAACB; --navy:#8FB0FF; --red:#FF5A60; --line:#25324D; --cue-bg:#1A2A4A; --band:#05080F; color-scheme:dark; }
+body { background:var(--bg); color:var(--fg); font-family:var(--display); font-size:16px; line-height:1.6; margin:0; }
+.wrap { max-width:1100px; margin-inline:auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); }
+header.hd { background:var(--band); color:#fff; }
+header.hd .wrap { padding-block:40px 36px; display:flex; flex-direction:column; gap:10px; }
+.kick { font-size:12px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; color:#9FB6E8; }
+header.hd h1 { margin:0; font-size:clamp(28px,4vw,44px); line-height:1.1; text-wrap:balance; }
+header.hd h1 span { color:#FF4A51; }
+header.hd p { margin:0; color:#C9D3E6; max-width:70ch; }
+main .wrap { padding-block:36px 64px; display:flex; flex-direction:column; gap:40px; }
+h2.sec { font-size:22px; color:var(--navy); margin:0 0 14px; }
+.funnels { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; }
+@media (max-width:760px){ .funnels { grid-template-columns:minmax(0,1fr); } }
+.fn { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px; display:flex; flex-direction:column; gap:14px; }
+.fn h3 { margin:0; font-size:19px; color:var(--fg); }
+.fn p { margin:0; color:var(--muted); font-size:15px; }
+.steps { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; counter-reset:s; }
+.steps a { display:grid; grid-template-columns:30px minmax(0,1fr) auto; gap:12px; align-items:center; text-decoration:none; color:var(--fg); padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:var(--bg); }
+.steps a:hover, .steps a:focus-visible { border-color:var(--navy); }
+.steps a::before { counter-increment:s; content:counter(s); width:30px; height:30px; border-radius:50%; background:var(--navy); color:var(--surface); display:grid; place-items:center; font-weight:700; font-size:14px; }
+.steps b { display:block; }
+.steps small { color:var(--muted); font-size:13px; }
+.steps .go { color:var(--red); font-weight:700; font-size:14px; white-space:nowrap; }
+.notes { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:20px 22px; }
+.notes ul { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:6px; }
+.script { background:var(--surface); border:1px solid var(--line); border-radius:16px; padding:clamp(18px,4vw,44px); }
+.script > * { max-width:72ch; }
+.script h1 { font-size:clamp(24px,3vw,34px); color:var(--navy); line-height:1.15; margin:0 0 12px; text-wrap:balance; }
+.script h2 { font-size:21px; color:var(--navy); margin:34px 0 10px; border-top:1px solid var(--line); padding-top:22px; }
+.script h3 { font-size:17px; color:var(--red); margin:28px 0 8px; letter-spacing:.02em; }
+.script p, .script li { color:var(--fg); }
+.script blockquote { margin:12px 0; padding:12px 16px; border-left:4px solid var(--red); background:var(--cue-bg); border-radius:0 10px 10px 0; }
+.script blockquote p { margin:0; }
+.script code { font-size:.9em; background:var(--cue-bg); padding:1px 5px; border-radius:4px; }
+.cue { display:block; font-size:13.5px; color:var(--muted); background:var(--cue-bg); border-radius:8px; padding:8px 12px; font-weight:600; }
+.script hr { border:0; border-top:1px solid var(--line); margin:26px 0; }
+</style>
+</head>
+<body>
+<header class="hd"><div class="wrap">
+<span class="kick">Emily · The Medicare Coach · Oct 16, 2026</span>
+<h1>The One-Time Medicare Decision: <span>VSL + Quiz Funnels</span></h1>
+<p>Built from Emily's Oct 16 live workshop, her live funnel pages and her brand files. Both funnels hand off to the live Concierge checkout ($1,497 or 2 x $749). A cold pre-ship review has been run and its fixes applied. Each step below opens as its own page.</p>
+</div></header>
+<main><div class="wrap">
+<section><h2 class="sec">The funnels</h2>
+<div class="funnels">
+<div class="fn"><h3>VSL funnel</h3><p>Hook-band pre-frame, 13-minute VSL, Golden Ticket Window diagram, real client reviews, then the offer page.</p>
+<ol class="steps">
+<li><a href="vsl-funnel/index.html" target="_blank" rel="noopener"><span><b>VSL landing</b><small>Video, 5 steps, reviews, FAQ</small></span><span class="go">Open</span></a></li>
+<li><a href="vsl-funnel/enroll.html" target="_blank" rel="noopener"><span><b>Enroll</b><small>Offer stack, hands off to live checkout</small></span><span class="go">Open</span></a></li>
+<li><a href="vsl-funnel/welcome.html" target="_blank" rel="noopener"><span><b>Welcome</b><small>After purchase: prep checklist</small></span><span class="go">Open</span></a></li>
+</ol></div>
+<div class="fn"><h3>Quiz funnel: Medicare Readiness Check</h3><p>9 questions, 2 interstitials, contact gate, then a personalized report with 5 profiles and 4 exposure meters.</p>
+<ol class="steps">
+<li><a href="quiz-funnel/index.html" target="_blank" rel="noopener"><span><b>Quiz landing</b><small>Outcome promise, sample report</small></span><span class="go">Open</span></a></li>
+<li><a href="quiz-funnel/quiz.html" target="_blank" rel="noopener"><span><b>The check</b><small>Take it to see your own report</small></span><span class="go">Open</span></a></li>
+<li><a href="quiz-funnel/results.html" target="_blank" rel="noopener"><span><b>Readiness Report</b><small>Shows a sample until you take the check</small></span><span class="go">Open</span></a></li>
+</ol></div>
+</div></section>
+<section class="notes"><h2 class="sec">Before paid traffic</h2><ul>
+<li>The VSL page plays Emily's 76-second "Over 500k" cut for now. Record the full VSL from the script below, then swap the player's <code>data-src</code>.</li>
+<li>Connect the quiz's contact gate to a GHL form. Right now nothing leaves the visitor's browser.</li>
+<li>Emily confirms: the press line, the "65% changed plans" stat, the satisfaction terms, $1,497 plus bonuses as the standing offer, 200,000 vs 100,000, and using four workshop client stories in paid media.</li>
+</ul></section>
+<section><h2 class="sec">VSL script</h2><article class="script">
+<h1>VSL Script: "The One-Time Medicare Decision"</h1>
+<p><strong>Property:</strong> Emily / The Medicare Coach
+<strong>Format:</strong> Medium VSL, about 14 minutes (roughly 2,100 spoken words at Emily's pace). Emily on camera, one seated setup, kitchen-table register. Cutaway cards and simple motion graphics are marked <span class="cue">[ON SCREEN]</span> and B-roll is marked <span class="cue">[B-ROLL]</span>.
+<strong>Feeds:</strong> <code>vsl-funnel/index.html</code>. Every CTA goes to <code>vsl-funnel/enroll.html</code>, which hands off to the live checkout.
+<strong>Source:</strong> Every rule, story and number below comes from Emily's own 10-16-2026 live workshop (transcript in <code>../2026-10-16 - Webinar Transcript/webinar.txt</code>) or from <code>brand/</code>. Nothing was invented. The items Emily still needs to confirm are listed at the bottom.</p>
+<hr />
+<h2>Strategy (built with the vsl-master-architect skill)</h2>
+<p><strong>Awareness:</strong> problem-aware. These viewers know Medicare is confusing. They don't know the decision is mostly one-time, and they don't know the advice they're getting is shaped by commissions.
+<strong>Sophistication:</strong> stage 4. Every insurer says "we make Medicare easy." The way to stand apart is the mechanism, plus the fact that Emily is not an agent.
+<strong>Lead type:</strong> a qualifier lead combined with a contrarian lead (creative direction lock, move 1). The asset threshold is the hook.</p>
+<p><strong>16-word core:</strong></p>
+<blockquote>
+<p>Medicare's one-time "golden ticket" window is the key to protecting your doctors and your savings, and it's only used right through a 100% independent, doctor-first decision process.</p>
+</blockquote>
+<p><strong>Problem mechanism, the "Golden Ticket Window":</strong> for the first six months you can join any supplement plan regardless of your health. After that, companies can ask about your health and turn you down. Most people only find out they're in the wrong plan once they're sick, and by then it's too late to switch. On top of that, the advice most people get is paid for by the plans that pay the most commission. (The four moves from the lock: wealth qualifier, the enemy is the incentive and not the person, a dual stake, and irreversibility as the urgency.)</p>
+<p><strong>Solution mechanism, "The Five-Step Medicare Decision Process":</strong> Emily's own framework, which she says has been used with thousands of people:
+1. When to join
+2. Doctor-first program choice (Original Medicare or Advantage)
+3. Part D
+4. The right supplement letter, then the right company
+5. Make it official</p>
+<p><strong>Offer:</strong> the Medicare Enrollment Concierge. One time: $1,497, or 2 x $749. A spouse adds $700. Bonuses: first money-saving annual review, Medicare timeline, physician network research, and a 12-month help desk.</p>
+<hr />
+<h2>THE SCRIPT</h2>
+<h3>1. LEAD (0:00 to 1:30)</h3>
+<p><span class="cue">[ON SCREEN: black band top, white line 1 "Saved half a million or more?" / red line 2 "Standard Medicare advice wasn't built for you."]</span></p>
+<p>If you've saved half a million dollars or more for retirement, I want you to hear this before you pick a single Medicare plan, because most of the Medicare advice out there was built for someone who doesn't have savings to protect, and if you follow it, it can quietly cost you your doctors and your savings at the exact moment you need them most.</p>
+<p>And here's the part almost nobody tells you. For a lot of people, this is a decision you only get to make once.</p>
+<p><span class="cue">[ON SCREEN: "You may only get ONE chance to pick the right plan."]</span></p>
+<p>I'm Emily with The Medicare Coach. I'm not an insurance agent. We don't sell any insurance plans. And we're not the government. We don't get paid anything from the insurance companies, so our only job is helping you do what's right and best for you.</p>
+<p>Over the last decade, our team has helped over 10,000 people with Medicare, everyone from bus drivers to doctors to celebrities, and over 200,000 people have joined our free Medicare workshop across all 50 states.</p>
+<p>So in the next few minutes, I'm going to show you the one rule that makes Medicare a one-time decision, why the people calling you are almost never going to bring it up, and the simple five-step process my dad and I used so that you can get it right the first time.</p>
+<p>This is for you if you're joining Medicare in the next 12 months, or you're working past 65 on an employer plan and you're not sure what to do. If you just want the cheapest plan you can find and you're happy to take your chances, this probably isn't for you, and that's okay.</p>
+<h3>2. BACKGROUND STORY (1:30 to 3:45)</h3>
+<p><span class="cue">[B-ROLL: family living room, evening light. Kitchen counter stacked with unopened Medicare mailers.]</span></p>
+<p>A few years ago I went home to visit my dad, and on the first night back we were sitting in the living room and he said, "Emily, I'm turning 65 in March. Any chance you can help me figure out Medicare?"</p>
+<p>And I was a little surprised, because my dad has always known everything about everything. But I thought, how hard can it be? After college I'd moved to New York to manage financial risk at Goldman Sachs. I figured I could handle a health insurance form.</p>
+<p>So I went online, and what came up first was insurance company ads, and then Advantage plans and supplements and penalties and gaps and all of these letters. The government had some information, but the more I read, the more confused I got. My dad had saved a whole stack of Medicare mailers in the corner of the kitchen, and by about the third envelope I realized they were all just ads.</p>
+<p>So I said, let's just stick with Blue Cross. He's been with them for years, he's happy, let's just pick a plan. But something didn't sit right with me. This is the health insurance he'll probably have for the rest of his life, and we were about to guess.</p>
+<p>That's when I remembered Larry, a man in my hometown who called himself the Medicare Coach. He didn't sell insurance and he didn't work for the government. He helped people the way an accountant helps you with your taxes.</p>
+<p><span class="cue">[ON SCREEN: "The plan I would have picked for my dad was absolutely not the right decision."]</span></p>
+<p>And when Larry walked us through it, I was shocked. The plan I would have picked for my dad was absolutely not the right decision. And I had no idea Medicare had insurability rules, which meant we really had to get it right when he first joined, because we might not be able to change it later.</p>
+<p>And honestly, it made me mad. My dad worked his whole life and paid into Medicare for decades, and right when he needs the best health care, the system is basically set up for him to make the wrong decision.</p>
+<p>So about 10 years ago I joined Larry at The Medicare Coach. And over the years I noticed something. Whether we were helping a healthy retired teacher, a doctor with health issues, or a friend on dozens of medications, we followed the same five steps every time. That became the process I'm going to walk you through.</p>
+<h3>3. THE PROBLEM MECHANISM: THE GOLDEN TICKET WINDOW (3:45 to 6:15)</h3>
+<p><span class="cue">[ON SCREEN: animated timeline. A green "6-MONTH WINDOW" bar starts at "You join Medicare". After it ends, the bar turns grey and a padlock icon appears.]</span></p>
+<p>So here's the rule. Original Medicare usually covers about 80% of approved costs. The other 20% is on you, unless you have a Medicare supplement plan, which some people call Medigap, and 20% of uncovered costs can get very expensive, very quickly.</p>
+<p>When your Medicare Part B starts, you get a six-month window where you can join any supplement plan you want, no matter your health. You could have cancer, diabetes, heart issues, anything, and they have to accept you and they can't charge you more for it. I call it a golden ticket.</p>
+<p>But once that window closes, in most states those companies can ask about your health history, and they can turn you down.</p>
+<p><span class="cue">[ON SCREEN: "Easy: Original Medicare → Advantage later. Hard, if not impossible: Advantage → Original Medicare later."]</span></p>
+<p>That's why it's much easier to start on Original Medicare and switch to Medicare Advantage later than to go the other way. If you start on Advantage and later want to come back, in most cases you'd better be healthy. Most people don't realize they're in the wrong plan until they're sick, and by then it's usually too late to switch.</p>
+<p>Now, here's why nobody's telling you this.</p>
+<p><span class="cue">[ON SCREEN: "Who usually calls you first?" with icons for phone, mailbox and TV.]</span></p>
+<p>Usually it's an insurance company that reaches out to you, and most of the time they'll encourage you to join a Medicare Advantage plan. That's not because anyone is a bad person. Many agents are really helpful. It's that these plans make insurance companies the most money, so they spend more on advertising, they pay their agents more to sell them, and they add perks like gym memberships and $0 premiums to bring you in. What they rarely talk about is which doctors and hospitals you can or can't see.</p>
+<p><span class="cue">[B-ROLL: hospital exterior with no logos, wide shot. ON SCREEN: "Many top research hospitals accept Original Medicare, but very few to no Advantage plans."]</span></p>
+<p>When my dad and I were going through this, he was very healthy. But we wanted a plan that would still work for him in the worst case, and if something serious ever happened, we wanted him to have the option to go to a place like MD Anderson. So we checked, and MD Anderson accepted Original Medicare but only one Advantage plan out of hundreds, and that one was only for people in the Houston area. We see the same thing with places like Mayo Clinic and Cleveland Clinic. They usually take Original Medicare and very few to no Advantage plans.</p>
+<p>And here's where your savings come in. If you didn't get a supplement plan when you first joined, and then you get sick, it's usually too late to get one. So Medicare covers its 80%, and the other 20% of every test and every treatment comes out of your savings. None of us know what our health future holds, but with the right supplement plan we can at least control the financial burden of what it does hold.</p>
+<p><span class="cue">[ON SCREEN, dual-stake fork graphic: left path "Your savings → your family, travel, your plans" / right path "Your savings → avoidable medical bills"]</span></p>
+<p>So if you have savings, this matters twice: it decides whether you can see the doctors you want, and it decides whether your savings go to the life you planned or to medical bills you could have avoided. The more you've saved, the more you have exposed.</p>
+<h3>4. THE SOLUTION MECHANISM: THE FIVE-STEP MEDICARE DECISION PROCESS (6:15 to 9:00)</h3>
+<p><span class="cue">[ON SCREEN: five numbered cards, revealed one at a time.]</span></p>
+<p>So how do you get it right? Here are the same five steps we follow for every client.</p>
+<p><strong>Step 1: Know when to join.</strong> By 65 you need to be on Medicare or have acceptable coverage, or you can face lifetime penalties. I recommend applying for Part A and B about three months before you want it to start. A few months ago we helped Bob, who applied on his own about five days before his birthday month. Medicare made a mistake on his file and started rejecting his doctor's bills. And if you're working past 65, just because you can delay Medicare doesn't always mean you should. We helped Jane, who planned to work until 68, and our research found she could save $18,000 in her first year by leaving her employer plan and joining Medicare instead.</p>
+<p><strong>Step 2: Choose your program, doctors first.</strong> Before anything else, make a list of your doctors and ask each one two questions: what type of Medicare do you accept, and are there any rules I should know about, like a limit on Medicare patients. Most people fit clearly into one program or the other just from their doctors.</p>
+<p><strong>Step 3: Get the right Part D drug plan, every year.</strong> These plans look alike, but small details make big cost differences, and they change every single year. We've helped one client, Mary, review her plan every year since 2014, and those changes have saved her over $8,000. Last year 65% of our clients changed plans at their review and saved an average of $2,002.</p>
+<p><strong>Step 4: Pick the right supplement letter, then the right company.</strong> Supplement plans differ by coverage and by cost, and the insurance places usually show you the plans that pay them the most. Janice came to us for a second opinion after an insurance person made a recommendation, and the letter that actually fit her saved her over $100 a month, $1,200 in her first year. Then we look at the company itself: its rating, its rate-hike history, its loss ratio and its service. Most people keep that company for life.</p>
+<p><strong>Step 5: Make it official,</strong> so your enrollment, your paperwork and any high-income adjustment are all done right.</p>
+<p><span class="cue">[ON SCREEN: "The healthiest people when they join tend to regret their decision the most."]</span></p>
+<p>And it's funny, but the people who are healthiest when they first join Medicare are the ones who tend to regret it the most, because they didn't think about the long run.</p>
+<h3>5. PRODUCT BUILDUP AND REVEAL (9:00 to 11:15)</h3>
+<p>Now, if you're feeling like you're drinking out of a fire hose right now, that's completely normal. That's exactly how I felt sitting at the computer trying to figure this out for my dad.</p>
+<p>You can absolutely take these five steps and do it yourself. But how many of you know Medicare is an important decision, but you don't have the time or desire to spend 10 to 50 hours on research, waiting on hold, and cross-checking what everyone tells you?</p>
+<p><span class="cue">[ON SCREEN: "The Medicare Enrollment Concierge" in navy with the wordmark.]</span></p>
+<p>So we created the Medicare Enrollment Concierge. It's a done-for-you service that pairs you with your own Medicare coach, who takes you from beginning to end.</p>
+<p><span class="cue">[ON SCREEN: four steps build as a stack.]</span></p>
+<p><strong>First, your Personalized Medicare Interview.</strong> We learn your doctors, your pharmacy, your medications, any upcoming surgeries, whether you travel or are moving, and the details of any employer or retiree plan.</p>
+<p><strong>Second, your coach does all of your research,</strong> using our decade of experience: the right program, the right Part D plan, the right supplement letter, and the right company using our seven-factor supplement company scorecard. If you have an employer plan, we compare it side by side with Medicare.</p>
+<p><strong>Third, your one-on-one consultation.</strong> Your coach walks you through two to five options out of the hundreds available, what each covers and what each costs, so you can decide with confidence. You can have as many of these calls as you need.</p>
+<p><strong>Fourth, we make it official.</strong> We walk you through enrolling in Part A and B and any extra Medicare paperwork, like high-income appeals. The one thing we can't do is fill out the application with an insurance company, because that has to go through an agent. And honestly, that's a good thing, because it proves we're not paid by them.</p>
+<p><span class="cue">[ON SCREEN: client review card. Carol (published review): "They are unbiased, unlike the insurance companies who cold call selling their plans."]</span></p>
+<h3>6. THE CLOSE (11:15 to 12:45)</h3>
+<p>When you join, we also include:</p>
+<p><span class="cue">[ON SCREEN: bonus stack, each item ticking in.]</span></p>
+<ul>
+<li><strong>Your first money-saving annual review,</strong> so when your plan changes next fall, we check it for you before it's too late to switch.</li>
+<li><strong>Your personal Medicare timeline,</strong> a roadmap that catches red flags early.</li>
+<li><strong>Physician network research,</strong> where we confirm which plans your doctors actually accept.</li>
+<li><strong>12 months of our Medicare help desk,</strong> starting when your Medicare begins, for the bills and coverage questions that always come up in that first year.</li>
+</ul>
+<p>The Concierge is a one-time investment of $1,497, or two payments of $749. If you're married, your spouse can join for $700, since couples usually end up on different plans anyway.</p>
+<p><span class="cue">[ON SCREEN: "$1,497 one time · or 2 x $749 · spouse +$700"]</span></p>
+<p>So think about it this way. Janice saved $1,200 in her first year just by getting the right letter. And we have to think about Medicare in the long run, because when we first join, we have to get it right the first time.</p>
+<p><span class="cue">[ON SCREEN: button "Start My Medicare Enrollment Concierge" plus phone 785-537-6225]</span></p>
+<p>So click the button below this video to get started. We'll ask for your name, email and phone, and then my team will reach out to learn about you and match you with the right coach. If you have any questions at all, call us at 785-537-6225.</p>
+<h3>7. POST-CLOSE (12:45 to 13:15)</h3>
+<p>And whatever you do, please don't finalize your Medicare decision until you've thought about your doctors and your savings in the long run, not just today. Medicare can be great. Really, it can. You just have to get it right for you the first time.</p>
+<p>I'm Emily with The Medicare Coach, and we'd love to help you.</p>
+<p><span class="cue">[END CARD: logo, "Not an insurance agent · No commissions · Not the government", button, phone. Small print: "The Medicare Coach is not connected with or endorsed by the U.S. government or the federal Medicare program."]</span></p>
+<hr />
+<h2>Production notes</h2>
+<ul>
+<li><strong>Captions:</strong> burn in word-highlight captions (<code>video-captions</code>). Emily's masters already carry captions, so record clean for this one.</li>
+<li><strong>Hook bands:</strong> the first 8 seconds use the Emily hook-band format (black band, white line 1, red #ED1C24 line 2).</li>
+<li><strong>Cut-downs:</strong> cut a 60-second version (Lead + Golden Ticket Window + CTA) to use as the feeding ad. It keeps the message matched to the page headline.</li>
+<li><strong>Interim video:</strong> until this VSL is recorded, the VSL page plays Emily's clean 76-second "Over 500k Savings" cut (<code>assets/video/emily-500k-76s-interim.mp4</code>, from <code>2026-10-16 - 500k Video Enhanced Cuts/emi_500k-savings-76s_enhanced-v1.mp4</code>).</li>
+<li><strong>No on-screen document:</strong> don't show any client email or record on camera. The Nora email is on hold until Emily signs off (see <code>Emily/CLAUDE.md</code>). This script leaves Nora out on purpose.</li>
+</ul>
+<h2>Items for Emily to confirm before this airs</h2>
+<ol>
+<li><strong>Press line:</strong> "featured on Business Insider and Yahoo Finance." She said it live on 10-16, but <code>brand-guide.md</code> still marks press outlets as NEEDS CLIENT INPUT. It's left out of the script. Add it back once she confirms.</li>
+<li><strong>Annual-review stat:</strong> "65% changed plans, average saved $2,002." Her live claim. Confirm it's current and that she has the source data.</li>
+<li><strong>Satisfaction wording:</strong> the checkout shows a "Satisfaction Guarantee" seal, but the service agreement only allows a 3-business-day cancellation by certified mail (from the 10-01 red team). The script and pages leave out any guarantee or "make it right" line until Emily confirms terms that match.</li>
+<li><strong>Price and bonuses:</strong> $1,497 matches the live <code>join.themedicarecoach.com/mec-bonus</code> checkout, which itself shows $2,500 struck through. In the webinar, $1,497 and the help-desk bonus were a "join by Monday at midnight" offer. The pages show $1,497 with no struck price and no deadline (deadlines are banned). Confirm $1,497 and the bonuses are the standing offer for VSL and quiz traffic; otherwise the struck checkout price is a former-price risk.</li>
+<li><strong>Client stories:</strong> Jane, Bob, Mary and Janice are from her live workshop, first names only, money and timing details only. Third-party health stories (Nora, Kate's dad, the friend's cancer, the neighbor) are left out on purpose, in line with the Nora hold. Confirm she's comfortable with the four in paid media.</li>
+<li><strong>Proof numbers:</strong> "200,000+ workshop attendees" follows the brand guide, but her videos say 100,000 (open item in <code>Emily/CLAUDE.md</code>).</li>
+</ol>
+</article></section>
+</div></main>
+
+</body>
+</html>

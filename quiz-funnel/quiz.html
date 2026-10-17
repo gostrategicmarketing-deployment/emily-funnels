@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Medicare Readiness Check | Questions</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,600;0,700;1,500&display=swap">
+<link rel="stylesheet" href="../assets/tmc.css">
+<style>html, body { height: 100%; }</style>
+</head>
+<body>
+<div class="qz-shell">
+  <div class="qz-top">
+    <div class="wrap">
+      <a href="index.html"><img class="logo" src="../assets/img/logo.png" alt="The Medicare Coach" width="170" height="19"></a>
+      <span class="count" id="count">Question 1 of 9</span>
+    </div>
+    <div class="qz-bar" aria-hidden="true"><i id="bar"></i></div>
+  </div>
+  <main class="qz-main">
+    <div class="wrap" style="width:100%;display:flex;justify-content:center">
+      <div class="qz-card" id="stage" aria-live="polite"><noscript><h2>This check needs JavaScript turned on.</h2><p>Prefer to talk it through? Call our team at 785-537-6225.</p></noscript></div>
+    </div>
+  </main>
+</div>
+
+<script>
+/* Medicare Readiness Check: 9 questions, 2 interstitials, a light contact gate, then results.html.
+   Answers stay in this browser (sessionStorage). LIVE BUILD: post the gate to the GHL form
+   (see README "Quiz wiring") before results.html loads. */
+(function () {
+  var Q = [
+    { id: "timing", type: "choice", q: "When do you expect your Medicare to start?", o: [
+      ["t3", "In the next 3 months"], ["t6", "In 4 to 6 months"], ["t12", "In 7 to 12 months"], ["t12p", "More than a year from now"], ["on", "I'm already on Medicare"] ] },
+    { id: "employer", type: "choice", q: "Will you or your spouse have health insurance through an employer past 65?", o: [
+      ["mine", "Yes, through my employer"], ["spouse", "Yes, through my spouse's employer"], ["retiree", "A retiree, COBRA or Marketplace plan"], ["none", "No, Medicare will be my coverage"] ] },
+    { id: "savings", type: "choice", q: "Roughly how much have you saved for retirement?", hint: "This shapes how much the 20% Medicare doesn't cover could put at risk. It stays private.", o: [
+      ["u100", "Under $100,000"], ["s100", "$100,000 to $500,000"], ["s500", "$500,000 to $1 million"], ["s1m", "Over $1 million"], ["na", "I'd rather not say"] ] },
+    { id: "hospital", type: "scale", q: "“If something serious happened, I'd want to be able to see a top specialist or research hospital.”", ends: ["Not important", "Very important"] },
+    { inter: "fact" },
+    { id: "doctors", type: "choice", q: "Do you know which type of Medicare your doctors accept?", o: [
+      ["asked", "Yes, I've asked them"], ["unsure", "No, I haven't asked yet"], ["nodoc", "I don't really see any doctors"] ] },
+    { id: "meds", type: "choice", q: "How many prescriptions do you take regularly?", o: [
+      ["m0", "None"], ["m1", "1 to 3"], ["m4", "4 to 7"], ["m8", "8 or more"] ] },
+    { id: "pressure", type: "scale", q: "“I'm getting calls and mailers pushing me toward a specific plan.”", ends: ["Not at all", "Constantly"] },
+    { inter: "window" },
+    { id: "who", type: "choice", q: "Who is this Medicare decision for?", o: [
+      ["me", "Just me"], ["couple", "Me and my spouse"], ["parent", "I'm helping a parent"] ] },
+    { id: "worry", type: "choice", q: "{name}which worries you most?", o: [
+      ["stuck", "Picking the wrong plan and being stuck with it"], ["bills", "Medical bills eating into savings"], ["docs", "Losing access to the doctors we want"], ["time", "Wasting hours on research and phone calls"] ] },
+    { gate: true }
+  ];
+  var A = {}, i = 0, history = [];
+  var stage = document.getElementById("stage"), bar = document.getElementById("bar"), count = document.getElementById("count");
+  var total = Q.filter(function (x) { return x.id; }).length;
+  try { var saved = JSON.parse(sessionStorage.getItem("tmc_quiz") || "{}"); if (saved && saved.answers) A = saved.answers; } catch (e) {}
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function qNum() { var n = 0; for (var k = 0; k <= i && k < Q.length; k++) if (Q[k].id) n++; return n; }
+  function progress() {
+    var n = qNum(), cur = Q[i];
+    var done = cur && cur.id ? n - 1 : n;
+    if (cur && cur.gate) done = total;
+    bar.style.width = Math.round((done / total) * 100) + "%";
+    count.textContent = cur && cur.gate ? "Almost done" : (cur && cur.inter ? "Quick note" : "Question " + n + " of " + total);
+  }
+  function backBtn() { return i > 0 ? '<button class="qz-back" type="button" id="back">← Back</button>' : ""; }
+  function bindBack() { var b = document.getElementById("back"); if (b) b.onclick = function () { i = history.pop() || 0; render(); }; }
+  function next() { history.push(i); i++; render(); }
+
+  function render() {
+    stage.removeAttribute("data-busy");
+    progress();
+    var s = Q[i]; var html = "";
+    if (s.inter === "fact") {
+      html = '<div class="inter qz-anim"><span class="eyebrow teal">Something most people never hear</span>' +
+        '<h2>Many top research hospitals accept Original Medicare, but very few to no Medicare Advantage plans.</h2>' +
+        '<p>When Emily checked MD Anderson for her own dad, it accepted Original Medicare but only one Advantage plan out of hundreds, and that one was only for people in the Houston area.</p>' +
+        '<button class="btn btn-red" type="button" id="go" style="align-self:flex-start">Continue <span class="arrow" aria-hidden="true">→</span></button></div>';
+    } else if (s.inter === "window") {
+      html = '<div class="inter qz-anim"><span class="eyebrow teal">The golden ticket</span><div class="big">6 months</div>' +
+        '<h2>That’s your window to join any Medicare supplement plan, no matter your health.</h2>' +
+        '<p>After it closes, in most states companies can ask about your health and turn you down. Most people only find out they’re in the wrong plan once they’re sick.</p>' +
+        '<button class="btn btn-red" type="button" id="go" style="align-self:flex-start">Continue <span class="arrow" aria-hidden="true">→</span></button></div>';
+    } else if (s.gate) {
+      html = '<div class="qz-anim stack" style="gap:20px"><span class="qn">Your report is ready</span>' +
+        '<h2>Where should we send your Medicare Readiness Report?</h2>' +
+        '<p class="muted">Your report appears on the next screen. We’re not insurance agents and we don’t sell plans.</p>' +
+        '<form id="gate" novalidate class="stack" style="gap:14px">' +
+        '<div class="field"><label for="fn">First name</label><input id="fn" name="first_name" autocomplete="given-name" required value="' + esc(A.first_name || "") + '"></div>' +
+        '<div class="field"><label for="em">Email</label><input id="em" name="email" type="email" autocomplete="email" required value="' + esc(A.email || "") + '"><span class="err" id="err" hidden>Enter your email so we can send your report.</span></div>' +
+        '<div class="field"><label for="ph">Phone <span class="muted" style="font-weight:400">(optional)</span></label><input id="ph" name="phone" type="tel" autocomplete="tel" value="' + esc(A.phone || "") + '"></div>' +
+        '<button class="btn btn-red" type="submit">Show My Report <span class="arrow" aria-hidden="true">→</span></button>' +
+        '<p class="disclaim">By continuing you agree that The Medicare Coach may email you about your report, and, if you enter a phone number, call or text you about Medicare help. Consent is not a condition of purchase. Unsubscribe or opt out anytime.</p></form>' +
+        backBtn() + '</div>';
+    } else {
+      var qtext = s.q.replace("{name}", A.who === "parent" ? "For your parent, " : "Thinking about Medicare, ");
+      qtext = qtext.charAt(0).toUpperCase() + qtext.slice(1);
+      html = '<div class="qz-anim stack" style="gap:20px"><span class="qn">Question ' + qNum() + '</span><h2>' + esc(qtext) + '</h2>' + (s.hint ? '<p class="hint">' + esc(s.hint) + '</p>' : "");
+      if (s.type === "choice") {
+        html += '<div class="opts" role="radiogroup">' + s.o.map(function (o) {
+          return '<button type="button" class="opt' + (A[s.id] === o[0] ? " sel" : "") + '" data-v="' + o[0] + '" role="radio" aria-checked="' + (A[s.id] === o[0]) + '"><span class="dot" aria-hidden="true"></span>' + esc(o[1]) + '</button>';
+        }).join("") + "</div>";
+      } else {
+        html += '<div class="scale-ends"><span>' + s.ends[0] + '</span><span>' + s.ends[1] + '</span></div><div class="scale opts" role="radiogroup">' +
+          [1, 2, 3, 4, 5].map(function (v) {
+            var lab = v === 1 ? s.ends[0] : v === 5 ? s.ends[1] : ["", "", "Somewhat", "Fairly", ""][v - 1] || String(v);
+            if (v === 2) lab = "A little";
+            return '<button type="button" class="opt' + (A[s.id] == v ? " sel" : "") + '" data-v="' + v + '" role="radio" aria-checked="' + (A[s.id] == v) + '"><span class="dot" aria-hidden="true"></span>' + lab + "</button>";
+          }).join("") + "</div>";
+      }
+      html += backBtn() + "</div>";
+    }
+    stage.innerHTML = html;
+    bindBack();
+    var go = document.getElementById("go"); if (go) { go.onclick = next; go.focus(); }
+    stage.querySelectorAll(".opt").forEach(function (b) {
+      b.onclick = function () {
+        if (stage.getAttribute("data-busy")) return;
+        stage.setAttribute("data-busy", "1");
+        stage.querySelectorAll(".opt").forEach(function (x) { x.classList.remove("sel"); x.setAttribute("aria-checked", "false"); });
+        b.classList.add("sel"); b.setAttribute("aria-checked", "true");
+        A[s.id] = b.getAttribute("data-v");
+        save();
+        setTimeout(next, 260);
+      };
+    });
+    var form = document.getElementById("gate");
+    if (form) {
+      document.getElementById("fn").focus();
+      form.onsubmit = function (e) {
+        e.preventDefault();
+        var em = document.getElementById("em").value.trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) { document.getElementById("err").hidden = false; document.getElementById("em").focus(); return; }
+        A.first_name = document.getElementById("fn").value.trim();
+        A.email = em; A.phone = document.getElementById("ph").value.trim();
+        save();
+        loading();
+      };
+    }
+  }
+  function save() { try { sessionStorage.setItem("tmc_quiz", JSON.stringify({ answers: A, at: Date.now() })); } catch (e) {} }
+  function loading() {
+    bar.style.width = "100%"; count.textContent = "Building your report";
+    var steps = ["Checking your timeline", "Weighing doctor access", "Measuring savings exposure", "Writing your report"];
+    stage.innerHTML = '<div class="loader qz-anim"><div class="ring" aria-hidden="true"></div><h2>Building your Medicare Readiness Report…</h2><ul id="ls">' +
+      steps.map(function (t) { return "<li>" + t + "</li>"; }).join("") + "</ul></div>";
+    var lis = stage.querySelectorAll("#ls li"), k = 0;
+    (function tick() {
+      if (k < lis.length) { lis[k].classList.add("done"); k++; setTimeout(tick, 650); }
+      else { location.href = "results.html"; }
+    })();
+  }
+  render();
+})();
+</script>
+</body>
+</html>
